@@ -1,6 +1,5 @@
 package com.example.githubcommits.adapter
 
-import Commit
 import GithubResponse
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +11,9 @@ import com.example.githubcommits.R
 class Adapter(private var commits: GithubResponse): RecyclerView.Adapter<Adapter.AdapterHolder>() {
 
     inner class AdapterHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var author: TextView = itemView.findViewById(R.id.textView)
-        var commit_msg: TextView = itemView.findViewById(R.id.textView2)
+        var author: TextView = itemView.findViewById(R.id.textViewName)
+        var date: TextView = itemView.findViewById(R.id.textViewDate)
+        var commit_msg: TextView = itemView.findViewById(R.id.textViewCommit)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterHolder {
@@ -23,7 +23,8 @@ class Adapter(private var commits: GithubResponse): RecyclerView.Adapter<Adapter
     override fun onBindViewHolder(holder: AdapterHolder, position: Int) {
         holder.apply {
             author.text = commits[position].commit.author.name
-            commit_msg.text = commits[position].commit.message.trim()
+            date.text = commits[position].commit.author.date
+            commit_msg.text = commits[position].commit.message
         }
 
     }
